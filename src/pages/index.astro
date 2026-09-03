@@ -7,36 +7,39 @@ const logoUrl = 'https://raw.githubusercontent.com/brownyidel/YB-portfolio/main/
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#080b11" />
-		<meta name="description" content="Yidel Brown — web development, software and automation." />
+		<meta name="theme-color" content="#06080d" />
+		<meta name="description" content="Yidel.dev — secure development previews, staging environments, websites, software and digital systems." />
 		<meta name="robots" content="index,follow" />
-		<title>Yidel Brown — Developer</title>
+		<title>Yidel.dev — Development Preview Environment</title>
+
 		<style is:global>
 			:root {
 				color-scheme: dark;
-				--bg: #07090e;
-				--panel: rgba(18, 22, 31, 0.68);
-				--panel-border: rgba(255, 255, 255, 0.09);
-				--text: #f5f6f8;
-				--muted: #a9afba;
-				--gold: #e5b761;
-				--gold-soft: #b8873d;
-				--silver: #e8ebef;
+				--bg: #05070b;
+				--bg-2: #0a0d13;
+				--panel: rgba(13, 17, 24, 0.78);
+				--panel-2: rgba(255,255,255,.035);
+				--line: rgba(255,255,255,.09);
+				--line-soft: rgba(255,255,255,.055);
+				--text: #f7f7f8;
+				--muted: #9aa2ae;
+				--muted-2: #69717d;
+				--gold: #e3b25a;
+				--gold-bright: #f4d08a;
+				--silver: #dde2e9;
 			}
 
 			* { box-sizing: border-box; }
-
-			html { background: var(--bg); scroll-behavior: smooth; }
-
+			html { background: var(--bg); }
 			body {
 				margin: 0;
 				min-height: 100vh;
 				font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 				color: var(--text);
 				background:
-					radial-gradient(circle at 72% 36%, rgba(218, 164, 75, 0.11), transparent 30%),
-					radial-gradient(circle at 18% 80%, rgba(177, 190, 210, 0.06), transparent 28%),
-					linear-gradient(145deg, #05070a 0%, #0b0f16 46%, #080a0f 100%);
+					radial-gradient(circle at 82% 14%, rgba(229, 178, 90, .13), transparent 25%),
+					radial-gradient(circle at 13% 75%, rgba(188, 202, 221, .065), transparent 25%),
+					linear-gradient(145deg, #040609 0%, #0b0f16 47%, #06080d 100%);
 				overflow-x: hidden;
 			}
 
@@ -44,39 +47,47 @@ const logoUrl = 'https://raw.githubusercontent.com/brownyidel/YB-portfolio/main/
 				content: "";
 				position: fixed;
 				inset: 0;
+				z-index: -3;
 				pointer-events: none;
-				opacity: 0.32;
 				background-image:
-					linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-					linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-				background-size: 48px 48px;
-				mask-image: linear-gradient(to bottom, black, transparent 85%);
+					linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+					linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+				background-size: 52px 52px;
+				mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,.85) 60%, transparent 100%);
 			}
 
-			.shell {
+			body::after {
+				content: "";
+				position: fixed;
+				inset: 0;
+				z-index: -2;
+				pointer-events: none;
+				background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.018) 50%, transparent 65%);
+				background-size: 220% 100%;
+				animation: sheen 11s linear infinite;
+			}
+
+			.page {
 				position: relative;
 				min-height: 100svh;
-				display: grid;
-				grid-template-rows: auto 1fr auto;
 				isolation: isolate;
 			}
 
-			.glow {
+			.ambient {
 				position: fixed;
-				width: 38rem;
-				height: 38rem;
+				width: 34rem;
+				height: 34rem;
 				border-radius: 50%;
-				background: rgba(226, 176, 88, 0.07);
-				filter: blur(90px);
-				top: 8%;
+				filter: blur(100px);
+				background: rgba(225, 171, 74, .075);
+				top: 2rem;
 				right: -12rem;
-				pointer-events: none;
 				z-index: -1;
+				pointer-events: none;
 			}
 
-			header,
-			footer {
-				width: min(1180px, calc(100% - 48px));
+			.wrap {
+				width: min(1240px, calc(100% - 48px));
 				margin: 0 auto;
 			}
 
@@ -84,62 +95,72 @@ const logoUrl = 'https://raw.githubusercontent.com/brownyidel/YB-portfolio/main/
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				padding: 28px 0 10px;
+				padding: 26px 0 14px;
 			}
 
-			.wordmark {
-				font-size: 0.78rem;
-				font-weight: 750;
-				letter-spacing: 0.22em;
+			.brand {
+				display: flex;
+				align-items: center;
+				gap: 11px;
+				font-size: .82rem;
+				font-weight: 760;
+				letter-spacing: .16em;
 				text-transform: uppercase;
-				color: #f4f5f7;
+				color: #eef0f3;
 			}
 
-			.wordmark span { color: var(--gold); }
+			.brand-mark {
+				width: 9px;
+				height: 9px;
+				border: 1px solid var(--gold);
+				transform: rotate(45deg);
+				box-shadow: 0 0 18px rgba(227,178,90,.34);
+			}
 
-			.status {
+			.brand span { color: var(--gold); }
+
+			.live {
 				display: inline-flex;
 				align-items: center;
 				gap: 9px;
-				font-size: .75rem;
-				letter-spacing: .1em;
+				font-size: .7rem;
+				font-weight: 650;
+				letter-spacing: .13em;
 				text-transform: uppercase;
-				color: #aeb5c0;
+				color: #9ba3ae;
 			}
 
-			.status-dot {
+			.live i {
 				width: 7px;
 				height: 7px;
 				border-radius: 50%;
 				background: var(--gold);
-				box-shadow: 0 0 0 5px rgba(229,183,97,.08), 0 0 18px rgba(229,183,97,.35);
+				box-shadow: 0 0 0 5px rgba(227,178,90,.07), 0 0 18px rgba(227,178,90,.45);
 			}
 
-			main {
-				width: min(1180px, calc(100% - 48px));
-				margin: 0 auto;
+			.hero {
 				display: grid;
-				grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+				grid-template-columns: minmax(0, 1fr) minmax(440px, .9fr);
+				gap: clamp(42px, 7vw, 100px);
 				align-items: center;
-				gap: clamp(34px, 6vw, 92px);
-				padding: 52px 0 64px;
+				padding: clamp(48px, 7vh, 86px) 0 52px;
 			}
 
-			.copy { max-width: 690px; }
+			.copy { max-width: 710px; }
 
-			.eyebrow {
+			.kicker {
 				display: inline-flex;
 				align-items: center;
-				gap: 12px;
+				gap: 11px;
 				margin-bottom: 22px;
-				font-size: .78rem;
-				font-weight: 720;
+				font-size: .76rem;
+				font-weight: 760;
 				letter-spacing: .18em;
 				text-transform: uppercase;
 				color: var(--gold);
 			}
 
-			.eyebrow::before {
+			.kicker::before {
 				content: "";
 				width: 34px;
 				height: 1px;
@@ -148,15 +169,15 @@ const logoUrl = 'https://raw.githubusercontent.com/brownyidel/YB-portfolio/main/
 
 			h1 {
 				margin: 0;
-				max-width: 760px;
-				font-size: clamp(3.2rem, 7.1vw, 6.9rem);
-				line-height: .94;
-				letter-spacing: -.055em;
-				font-weight: 780;
+				font-size: clamp(3.55rem, 7.25vw, 7.15rem);
+				line-height: .91;
+				letter-spacing: -.061em;
+				font-weight: 790;
+				max-width: 780px;
 			}
 
-			h1 .accent {
-				background: linear-gradient(100deg, #f6e2b8 0%, #d9a651 44%, #f0d39a 100%);
+			.gold {
+				background: linear-gradient(100deg, #fff0c9 0%, #e4b357 41%, #f5d99f 100%);
 				-webkit-background-clip: text;
 				background-clip: text;
 				color: transparent;
@@ -164,235 +185,439 @@ const logoUrl = 'https://raw.githubusercontent.com/brownyidel/YB-portfolio/main/
 
 			.lead {
 				margin: 30px 0 0;
-				max-width: 620px;
-				font-size: clamp(1rem, 1.6vw, 1.22rem);
+				max-width: 640px;
+				font-size: clamp(1.03rem, 1.5vw, 1.2rem);
 				line-height: 1.72;
 				color: var(--muted);
 			}
 
-			.capabilities {
-				margin-top: 34px;
-				display: flex;
-				flex-wrap: wrap;
-				gap: 10px;
+			.preview-note {
+				margin-top: 32px;
+				max-width: 620px;
+				display: grid;
+				grid-template-columns: auto 1fr;
+				gap: 14px;
+				align-items: start;
+				padding: 17px 18px;
+				border: 1px solid var(--line);
+				border-radius: 16px;
+				background: linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+				box-shadow: inset 0 1px rgba(255,255,255,.035), 0 18px 45px rgba(0,0,0,.15);
+				backdrop-filter: blur(16px);
 			}
 
-			.capabilities span {
-				border: 1px solid var(--panel-border);
-				background: rgba(255,255,255,.025);
-				backdrop-filter: blur(8px);
-				border-radius: 999px;
-				padding: 9px 13px;
-				font-size: .78rem;
-				letter-spacing: .045em;
-				color: #c6cbd3;
-			}
-
-			.visual {
-				position: relative;
+			.preview-icon {
+				width: 38px;
+				height: 38px;
+				border-radius: 11px;
 				display: grid;
 				place-items: center;
-				min-height: 520px;
-				perspective: 1000px;
+				border: 1px solid rgba(227,178,90,.22);
+				background: rgba(227,178,90,.07);
+				color: var(--gold-bright);
+				font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+				font-weight: 700;
 			}
 
-			.logo-stage {
+			.preview-note strong {
+				display: block;
+				margin: 1px 0 4px;
+				font-size: .9rem;
+				letter-spacing: .01em;
+				color: #eef0f3;
+			}
+
+			.preview-note p {
+				margin: 0;
+				font-size: .86rem;
+				line-height: 1.55;
+				color: #858e9a;
+			}
+
+			.stack {
 				position: relative;
-				width: min(100%, 520px);
+				min-height: 590px;
+				perspective: 1100px;
+			}
+
+			.logo-orb {
+				position: absolute;
+				z-index: 5;
+				top: 10px;
+				right: 8px;
+				width: 178px;
 				aspect-ratio: 1;
-				display: grid;
-				place-items: center;
-				transition: transform .18s ease-out;
-				will-change: transform;
+				border-radius: 50%;
+				padding: 8px;
+				background: linear-gradient(145deg, rgba(227,178,90,.28), rgba(255,255,255,.06));
+				box-shadow: 0 25px 70px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.07);
+				animation: float 6.5s ease-in-out infinite;
 			}
 
-			.logo-stage::before,
-			.logo-stage::after {
+			.logo-orb::before {
 				content: "";
 				position: absolute;
+				inset: -15px;
 				border-radius: 50%;
-				pointer-events: none;
+				border: 1px dashed rgba(227,178,90,.13);
+				animation: spin 28s linear infinite;
 			}
 
-			.logo-stage::before {
-				inset: -7%;
-				border: 1px solid rgba(226, 176, 88, .16);
-				box-shadow: inset 0 0 80px rgba(226,176,88,.025);
-				animation: breathe 5s ease-in-out infinite;
-			}
-
-			.logo-stage::after {
-				inset: -14%;
-				border: 1px dashed rgba(223, 227, 233, .08);
-				animation: spin 30s linear infinite;
-			}
-
-			.logo {
-				position: relative;
-				z-index: 2;
+			.logo-orb img {
+				display: block;
 				width: 100%;
 				height: 100%;
-				object-fit: contain;
 				border-radius: 50%;
-				filter: drop-shadow(0 26px 60px rgba(0,0,0,.48)) drop-shadow(0 0 26px rgba(221,169,77,.08));
+				object-fit: cover;
+				filter: saturate(.96) contrast(1.03);
 			}
 
-			.orbit-dot {
+			.window {
 				position: absolute;
+				border: 1px solid var(--line);
+				border-radius: 18px;
+				background: linear-gradient(155deg, rgba(18,23,32,.96), rgba(8,11,17,.94));
+				box-shadow: 0 28px 90px rgba(0,0,0,.42), inset 0 1px rgba(255,255,255,.035);
+				backdrop-filter: blur(18px);
+				overflow: hidden;
+			}
+
+			.browser {
+				z-index: 2;
+				width: min(100%, 520px);
+				left: 0;
+				top: 108px;
+				transform: rotateY(-7deg) rotateX(2deg);
+			}
+
+			.terminal {
 				z-index: 3;
-				top: -7.7%;
-				left: 50%;
-				width: 9px;
-				height: 9px;
+				width: min(88%, 430px);
+				right: -18px;
+				bottom: 22px;
+				transform: rotateY(6deg) rotateX(-1deg);
+			}
+
+			.window-bar {
+				height: 43px;
+				display: flex;
+				align-items: center;
+				gap: 7px;
+				padding: 0 15px;
+				border-bottom: 1px solid var(--line-soft);
+				background: rgba(255,255,255,.018);
+			}
+
+			.dot { width: 8px; height: 8px; border-radius: 50%; background: #3d444f; }
+			.dot:nth-child(1) { background: #7a5a33; }
+			.dot:nth-child(2) { background: #73684a; }
+			.dot:nth-child(3) { background: #536254; }
+
+			.address {
+				margin-left: 8px;
+				min-width: 0;
+				flex: 1;
+				border: 1px solid rgba(255,255,255,.06);
+				border-radius: 8px;
+				padding: 6px 9px;
+				font: 500 .68rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+				color: #7d8794;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				background: rgba(0,0,0,.18);
+			}
+
+			.browser-body { padding: 22px; }
+			.preview-chip {
+				display: inline-flex;
+				align-items: center;
+				gap: 7px;
+				font-size: .64rem;
+				font-weight: 730;
+				letter-spacing: .13em;
+				text-transform: uppercase;
+				color: var(--gold-bright);
+			}
+			.preview-chip::before {
+				content: "";
+				width: 6px;
+				height: 6px;
 				border-radius: 50%;
 				background: var(--gold);
-				box-shadow: 0 0 20px rgba(229,183,97,.65);
+				box-shadow: 0 0 10px rgba(227,178,90,.55);
 			}
 
-			.circuit {
-				position: absolute;
-				inset: auto -8% 4% auto;
-				width: 180px;
-				height: 110px;
-				opacity: .46;
+			.mock-title {
+				margin-top: 18px;
+				width: 74%;
+				height: 18px;
+				border-radius: 6px;
+				background: linear-gradient(90deg, rgba(255,255,255,.18), rgba(255,255,255,.07));
 			}
+			.mock-title.small { width: 52%; height: 11px; margin-top: 12px; opacity: .65; }
+			.mock-grid {
+				display: grid;
+				grid-template-columns: 1.08fr .92fr;
+				gap: 12px;
+				margin-top: 24px;
+			}
+			.mock-card {
+				min-height: 130px;
+				border: 1px solid rgba(255,255,255,.06);
+				border-radius: 12px;
+				background:
+					linear-gradient(140deg, rgba(227,178,90,.08), transparent 45%),
+					rgba(255,255,255,.018);
+				position: relative;
+				overflow: hidden;
+			}
+			.mock-card::after {
+				content: "</>";
+				position: absolute;
+				right: 13px;
+				bottom: 10px;
+				font: 700 1.45rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+				color: rgba(227,178,90,.26);
+			}
+			.mock-card.alt::after { content: "{ }"; color: rgba(220,225,233,.18); }
 
-			.circuit i {
-				position: absolute;
-				right: 0;
-				height: 1px;
-				background: linear-gradient(90deg, transparent, rgba(230,184,99,.7));
+			.terminal-body {
+				padding: 18px 20px 22px;
+				font: 500 .76rem/1.75 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+				color: #a8b0bb;
 			}
-			.circuit i::after {
-				content: "";
-				position: absolute;
-				right: -3px;
-				top: -3px;
+			.line { display: block; white-space: nowrap; }
+			.prompt { color: var(--gold-bright); }
+			.key { color: #d8dde4; }
+			.val { color: #86a88d; }
+			.comment { color: #59616d; }
+			.cursor {
+				display: inline-block;
 				width: 7px;
-				height: 7px;
-				border: 1px solid var(--gold);
-				border-radius: 50%;
-				background: #0a0d12;
+				height: 1.05em;
+				vertical-align: -.15em;
+				background: var(--gold);
+				animation: blink 1s steps(1) infinite;
 			}
-			.circuit i:nth-child(1) { top: 20px; width: 130px; }
-			.circuit i:nth-child(2) { top: 54px; width: 92px; }
-			.circuit i:nth-child(3) { top: 88px; width: 150px; }
+
+			.tech-row {
+				position: absolute;
+				z-index: 4;
+				left: 24px;
+				bottom: -4px;
+				display: flex;
+				gap: 9px;
+			}
+			.tech {
+				display: grid;
+				place-items: center;
+				width: 42px;
+				height: 42px;
+				border-radius: 12px;
+				border: 1px solid var(--line);
+				background: rgba(10,13,19,.9);
+				box-shadow: 0 12px 28px rgba(0,0,0,.3);
+				font: 750 .68rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+				color: #b7bec7;
+			}
+			.tech.gold { color: var(--gold-bright); }
+
+			.services {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 12px;
+				padding: 0 0 46px;
+			}
+			.service {
+				min-height: 102px;
+				padding: 17px;
+				border: 1px solid var(--line-soft);
+				border-radius: 15px;
+				background: rgba(255,255,255,.018);
+				box-shadow: inset 0 1px rgba(255,255,255,.025);
+			}
+			.service-top {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				margin-bottom: 8px;
+			}
+			.service-icon {
+				width: 28px;
+				height: 28px;
+				border-radius: 8px;
+				display: grid;
+				place-items: center;
+				border: 1px solid rgba(227,178,90,.16);
+				background: rgba(227,178,90,.045);
+				font: 700 .66rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+				color: var(--gold-bright);
+			}
+			.service strong { font-size: .82rem; color: #e4e7eb; }
+			.service p { margin: 0; font-size: .74rem; line-height: 1.5; color: #737c88; }
 
 			footer {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				gap: 20px;
+				gap: 18px;
 				padding: 18px 0 28px;
-				font-size: .72rem;
-				letter-spacing: .08em;
+				border-top: 1px solid var(--line-soft);
+				font-size: .7rem;
+				letter-spacing: .1em;
 				text-transform: uppercase;
-				color: #6f7682;
+				color: #5f6772;
 			}
+			footer strong { color: #929aa6; font-weight: 650; }
 
-			footer strong { color: #9fa6b1; font-weight: 600; }
-
+			@keyframes float {
+				0%, 100% { transform: translateY(0) rotate(.01deg); }
+				50% { transform: translateY(-9px) rotate(.01deg); }
+			}
 			@keyframes spin { to { transform: rotate(360deg); } }
-			@keyframes breathe {
-				0%, 100% { transform: scale(1); opacity: .75; }
-				50% { transform: scale(1.025); opacity: 1; }
-			}
+			@keyframes blink { 50% { opacity: 0; } }
+			@keyframes sheen { to { background-position: -220% 0; } }
 
-			@media (max-width: 860px) {
-				header, main, footer { width: min(100% - 32px, 680px); }
-				header { padding-top: 20px; }
-				main {
+			@media (max-width: 940px) {
+				.wrap { width: min(100% - 32px, 720px); }
+				.hero {
 					grid-template-columns: 1fr;
-					gap: 18px;
-					padding-top: 34px;
-					text-align: center;
+					padding-top: 30px;
+					gap: 26px;
 				}
-				.copy { margin: 0 auto; }
-				.eyebrow { justify-content: center; }
+				.copy { max-width: none; text-align: center; }
+				.kicker { justify-content: center; }
 				.lead { margin-left: auto; margin-right: auto; }
-				.capabilities { justify-content: center; }
-				.visual { order: -1; min-height: 0; padding: 18px 36px 26px; }
-				.logo-stage { width: min(78vw, 390px); }
-				.circuit { display: none; }
-				h1 { font-size: clamp(3rem, 13vw, 5.7rem); }
-				footer { margin-top: 14px; }
+				.preview-note { margin-left: auto; margin-right: auto; text-align: left; }
+				.stack { min-height: 560px; width: min(100%, 610px); margin: 0 auto; }
+				.services { grid-template-columns: repeat(2, 1fr); }
+				h1 { font-size: clamp(3.4rem, 11vw, 6.4rem); }
 			}
 
-			@media (max-width: 520px) {
-				.status { display: none; }
-				main { padding-top: 14px; padding-bottom: 40px; }
-				.visual { padding: 10px 48px 14px; }
-				.logo-stage::after { inset: -10%; }
-				.logo-stage::before { inset: -4%; }
-				.orbit-dot { top: -4.7%; }
-				.eyebrow { margin-bottom: 16px; }
-				.lead { margin-top: 22px; line-height: 1.62; }
-				.capabilities { margin-top: 26px; gap: 8px; }
-				.capabilities span { font-size: .72rem; padding: 8px 11px; }
+			@media (max-width: 560px) {
+				header { padding-top: 20px; }
+				.live { display: none; }
+				.hero { padding-top: 22px; }
+				h1 { font-size: clamp(3.25rem, 15vw, 5rem); }
+				.lead { margin-top: 22px; font-size: .98rem; line-height: 1.65; }
+				.preview-note { margin-top: 24px; padding: 14px; }
+				.stack { min-height: 470px; }
+				.logo-orb { width: 126px; right: 8px; top: 0; }
+				.browser { top: 76px; width: 96%; transform: none; }
+				.terminal { width: 91%; right: 0; bottom: 8px; transform: none; }
+				.browser-body { padding: 16px; }
+				.mock-grid { margin-top: 18px; }
+				.mock-card { min-height: 105px; }
+				.terminal-body { font-size: .66rem; padding: 14px 15px 17px; }
+				.tech-row { left: 10px; bottom: 0; gap: 7px; }
+				.tech { width: 36px; height: 36px; border-radius: 10px; font-size: .6rem; }
+				.services { grid-template-columns: 1fr 1fr; gap: 9px; padding-bottom: 34px; }
+				.service { min-height: 112px; padding: 13px; }
+				.service-top { align-items: flex-start; }
 				footer { justify-content: center; text-align: center; }
 				footer span:last-child { display: none; }
 			}
 
 			@media (prefers-reduced-motion: reduce) {
-				.logo-stage::before,
-				.logo-stage::after { animation: none; }
-				.logo-stage { transition: none; }
+				*, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
 			}
 		</style>
 	</head>
+
 	<body>
-		<div class="shell">
-			<div class="glow" aria-hidden="true"></div>
-			<header>
-				<div class="wordmark">YIDEL<span>.DEV</span></div>
-				<div class="status"><span class="status-dot"></span>Web · Software · Automation</div>
+		<div class="page">
+			<div class="ambient" aria-hidden="true"></div>
+
+			<header class="wrap">
+				<div class="brand"><i class="brand-mark" aria-hidden="true"></i> Yidel<span>.dev</span></div>
+				<div class="live"><i aria-hidden="true"></i> Development environment online</div>
 			</header>
 
-			<main>
-				<section class="copy" aria-labelledby="hero-title">
-					<div class="eyebrow">Yidel Brown · Developer</div>
-					<h1 id="hero-title">Building useful things <span class="accent">for the web</span> and beyond.</h1>
+			<main class="wrap hero">
+				<section class="copy">
+					<div class="kicker">Web • Software • Systems</div>
+					<h1>Development.<br /><span class="gold">Preview.</span> Deliver.</h1>
 					<p class="lead">
-						Websites, software, automation and custom digital tools — designed to be clean, practical and reliable.
+						Yidel.dev is the development and staging environment behind websites, software and digital systems built by Yidel Brown. Project previews live here while they are being designed, coded and refined before launch.
 					</p>
-					<div class="capabilities" aria-label="Areas of work">
-						<span>Web Development</span>
-						<span>Software</span>
-						<span>Automation</span>
-						<span>Digital Tools</span>
+
+					<div class="preview-note">
+						<div class="preview-icon">&lt;/&gt;</div>
+						<div>
+							<strong>Received a project preview?</strong>
+							<p>Use the complete yidel.dev address that was sent to you. Individual preview environments are intentionally not listed on this page.</p>
+						</div>
 					</div>
 				</section>
 
-				<section class="visual" aria-label="Yidel Brown logo">
-					<div class="logo-stage" id="logoStage">
-						<img class="logo" src={logoUrl} alt="YB — Yidel Brown, Develop Automate Solve" />
-						<span class="orbit-dot" aria-hidden="true"></span>
-						<div class="circuit" aria-hidden="true"><i></i><i></i><i></i></div>
+				<section class="stack" aria-label="Development preview illustration">
+					<div class="logo-orb">
+						<img src={logoUrl} alt="Yidel Brown logo" />
+					</div>
+
+					<div class="window browser" aria-hidden="true">
+						<div class="window-bar">
+							<span class="dot"></span><span class="dot"></span><span class="dot"></span>
+							<div class="address">https://project-preview.yidel.dev</div>
+						</div>
+						<div class="browser-body">
+							<div class="preview-chip">Preview build</div>
+							<div class="mock-title"></div>
+							<div class="mock-title small"></div>
+							<div class="mock-grid">
+								<div class="mock-card"></div>
+								<div class="mock-card alt"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="window terminal" aria-hidden="true">
+						<div class="window-bar">
+							<span class="dot"></span><span class="dot"></span><span class="dot"></span>
+							<div class="address">build / production</div>
+						</div>
+						<div class="terminal-body">
+							<span class="line"><span class="prompt">$</span> npm run build</span>
+							<span class="line"><span class="comment">// compiling project</span></span>
+							<span class="line"><span class="key">frontend</span>: <span class="val">ready</span></span>
+							<span class="line"><span class="key">api</span>: <span class="val">connected</span></span>
+							<span class="line"><span class="key">preview</span>: <span class="val">deployed</span> <span class="cursor"></span></span>
+						</div>
+					</div>
+
+					<div class="tech-row" aria-hidden="true">
+						<div class="tech gold">HTML</div>
+						<div class="tech">CSS</div>
+						<div class="tech gold">JS</div>
+						<div class="tech">API</div>
 					</div>
 				</section>
 			</main>
 
-			<footer>
-				<span>© 2026 <strong>Yidel Brown</strong></span>
-				<span>Develop · Automate · Solve</span>
+			<section class="wrap services" aria-label="Development capabilities">
+				<div class="service">
+					<div class="service-top"><span class="service-icon">&lt;/&gt;</span><strong>Web Development</strong></div>
+					<p>Responsive websites, interfaces and production-ready web experiences.</p>
+				</div>
+				<div class="service">
+					<div class="service-top"><span class="service-icon">{ }</span><strong>Software</strong></div>
+					<p>Custom tools, application logic and purpose-built digital products.</p>
+				</div>
+				<div class="service">
+					<div class="service-top"><span class="service-icon">API</span><strong>Systems</strong></div>
+					<p>APIs, integrations, dashboards and connected backend workflows.</p>
+				</div>
+				<div class="service">
+					<div class="service-top"><span class="service-icon">↻</span><strong>Automation</strong></div>
+					<p>Practical automation that removes repetitive work and connects processes.</p>
+				</div>
+			</section>
+
+			<footer class="wrap">
+				<span><strong>Yidel Brown</strong> • Develop • Automate • Solve</span>
+				<span>yidel.dev</span>
 			</footer>
 		</div>
-
-		<script>
-			const stage = document.getElementById('logoStage');
-			const finePointer = window.matchMedia('(pointer: fine)').matches;
-			const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-			if (stage && finePointer && !reducedMotion) {
-				window.addEventListener('pointermove', (event) => {
-					const x = (event.clientX / window.innerWidth - 0.5) * 9;
-					const y = (event.clientY / window.innerHeight - 0.5) * -9;
-					stage.style.transform = `rotateX(${y}deg) rotateY(${x}deg) translateZ(0)`;
-				});
-				window.addEventListener('pointerleave', () => {
-					stage.style.transform = 'rotateX(0deg) rotateY(0deg)';
-				});
-			}
-		</script>
 	</body>
 </html>

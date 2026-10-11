@@ -13,10 +13,6 @@
 		{
 			"pattern": "yidel.dev",
 			"custom_domain": true
-		},
-		{
-			"pattern": "yedidimdispatch.yidel.dev",
-			"custom_domain": true
 		}
 	],
 	"observability": {

@@ -1,7 +1,9 @@
 {
 	"name": "yidel-dev",
 	"compatibility_date": "2026-09-03",
-	"compatibility_flags": ["nodejs_compat"],
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
 	"main": "./dist/_worker.js/index.js",
 	"assets": {
 		"directory": "./dist",
@@ -10,6 +12,10 @@
 	"routes": [
 		{
 			"pattern": "yidel.dev",
+			"custom_domain": true
+		},
+		{
+			"pattern": "yedidimdispatch.yidel.dev",
 			"custom_domain": true
 		}
 	],
